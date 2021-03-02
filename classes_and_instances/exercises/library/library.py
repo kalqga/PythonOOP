@@ -1,3 +1,6 @@
+from classes_and_instances.exercises.library.user import User
+
+
 class Library:
 
     def __init__(self):
