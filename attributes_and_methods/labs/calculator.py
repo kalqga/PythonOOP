@@ -5,7 +5,7 @@ class Calculator:
 
     @staticmethod
     def add(*args):
-        return sum(args)
+        return reduce(lambda x, y: x + y, args)
 
     @staticmethod
     def multiply(*args):
