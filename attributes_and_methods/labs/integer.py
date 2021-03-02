@@ -10,7 +10,7 @@ class Integer:
     def from_float(cls, value):
         if type(value) != float:
             return "value is not a float"
-        return Integer(floor(value))
+        return cls(floor(value))
 
     @classmethod
     def from_roman(cls, value):
@@ -44,7 +44,7 @@ class Integer:
     def from_string(cls, value):
         if type(value) != str:
             return "wrong type"
-        return Integer(int(value))
+        return cls(int(value))
 
     def add(self, integer):
         if type(integer) != Integer:
@@ -54,7 +54,6 @@ class Integer:
 
 first_num = Integer(10)
 second_num = Integer.from_roman("IV")
-
 print(Integer.from_float("2.6"))
 print(Integer.from_string(2.6))
 print(first_num.add(second_num))

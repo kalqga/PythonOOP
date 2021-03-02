@@ -13,13 +13,12 @@ class Store:
     def from_size(cls, name, type, size):
         return cls(name, type, size // 2)
 
-    def sum_items(self):
-        return self.capacity <= sum(value for value in self.items.values())
+    def free_space(self):
+        return self.capacity - sum(self.items.values())
 
     def add_item(self, item_name):
-        if self.sum_items():
+        if not self.free_space():
             return "Not enough capacity in the store"
-
         if item_name not in self.items.keys():
             self.items[item_name] = 1
             return f"{item_name} added to the store"
@@ -28,10 +27,11 @@ class Store:
 
     def remove_item(self, item_name, amount):
         try:
-            if amount <= self.items[item_name]:
+            if self.items[item_name] - amount >= 0:
                 self.items[item_name] -= amount
                 return f"{amount} {item_name} removed from the store"
-            return f"Cannot remove {amount} {item_name}"
+            else:
+                return f"Cannot remove {amount} {item_name}"
         except KeyError:
             return f"Cannot remove {amount} {item_name}"
 
