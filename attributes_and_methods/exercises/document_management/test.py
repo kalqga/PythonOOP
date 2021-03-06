@@ -14,6 +14,7 @@ storage = Storage()
 storage.add_category(c1)
 storage.add_topic(t1)
 storage.add_document(d1)
+storage.delete_document(d1)
 
 print(c1)
 print(t1)

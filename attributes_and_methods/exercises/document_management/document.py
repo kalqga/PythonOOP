@@ -13,7 +13,9 @@ class Document:
 
     @classmethod
     def from_instances(cls, id, category, topic, file_name):
-        return cls(id, category, topic, file_name)
+        category_id = int(category.id)
+        topic_id = int(topic.id)
+        return cls(id, category_id, topic_id, file_name)
 
     def add_tag(self, tag_content):
         if tag_content not in self.tags:
