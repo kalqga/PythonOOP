@@ -57,7 +57,7 @@ class Account:
     def __add__(self, other):
         ac = Account(f"{self.owner}&{other.owner}")
         ac.amount = self.amount + other.amount
-        ac._transactions = self._transactions + other._transactions
+        ac._transactions = self._transactions + other.transactions
         return ac
 
     def __reversed__(self):
