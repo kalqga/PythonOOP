@@ -17,11 +17,12 @@ class Account:
 
     @staticmethod
     def validate_transaction(account, amount_to_add):
-        if account.balance() + amount_to_add < 0:
-            raise ValueError("sorry cannot go in debt!")
-        else:
-            account.add_transaction(amount_to_add)
-            return f"New balance: {account.balance()}"
+        if isinstance(amount_to_add, int):
+            if account.balance() + amount_to_add < 0:
+                raise ValueError("sorry cannot go in debt!")
+            else:
+                account.add_transaction(amount_to_add)
+                return f"New balance: {account.balance()}"
 
     def __str__(self):
         return f"Account of {self.owner} with starting amount: {self.amount}"
