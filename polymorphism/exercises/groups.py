@@ -1,20 +1,15 @@
 class Person:
-    new_id = -1
 
     def __init__(self, name, surname):
-        Person.new_id += 1
         self.name = name
         self.surname = surname
-        self.id = Person.new_id
 
     def __add__(self, other):
-        return Person(self.name, other.surname)
-
-    # def __unicode__(self):
-    #     return f"Person {self.id}: {self.name} {self.surname}"
+        p = Person(self.name, other.surname)
+        return p
 
     def __str__(self):
-        return f"Person {self.id}: {self.name} {self.surname}"
+        return f"{self.name} {self.surname}"
 
 
 class Group:
@@ -23,19 +18,19 @@ class Group:
         self.name = name
         self.people = people
 
+    def __add__(self, other):
+        g = Group(self.name, self.people + other.people)
+        return g
+
     def __len__(self):
         return len(self.people)
 
-    def __add__(self, other):
-        li_st = self.people + other.people
-        return Group(f"{self.name}&{other.name}", li_st)
+    def __str__(self):
+        members = ', '.join(str(p) for p in self.people)
+        return f"Group {self.name} with members {members}"
 
     def __getitem__(self, item):
-        return self.people[item]
-
-    def __str__(self):
-        memb = ', '.join(str(p) for p in self.people)
-        return f"Group {self.name} with members {memb}"
+        return f"Person {item}: {self.people[item]}"
 
 
 p0 = Person('Aliko', 'Dangote')
